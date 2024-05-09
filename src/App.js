@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import "./App.css";
+import { Toaster } from "react-hot-toast";
+
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
+import Home from "./components/Home";
+import Admin from "./components/Admin";
+import Candidate from "./components/Candidate";
+import Header from "./components/Header";
 
 function App() {
+  const location = useLocation();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Toaster />
+      {location.pathname === "/" || location.pathname === "/login" ? null : (
+        <Header />
+      )}
+      <Routes>
+        <Route path="/" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/home/:id" element={<Home />} />
+        <Route path="/admin/:id" element={<Admin />} />
+        <Route path="/candidate/:id" element={<Candidate />} />
+      </Routes>
+
+      {/* <Login /> */}
     </div>
   );
 }
