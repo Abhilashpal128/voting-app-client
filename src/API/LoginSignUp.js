@@ -1,11 +1,15 @@
 import axios from "axios";
 export const RegisterUser = async (postData) => {
   try {
-    const { data } = await axios.post("/users", postData, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_API_URL}/users`,
+      postData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     if (!data) {
       return { data: null, status: null, success: false };
     }
@@ -24,11 +28,15 @@ export const RegisterUser = async (postData) => {
 
 export const LoginUser = async (postData) => {
   try {
-    const { data } = await axios.post("/users/login", postData, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_API_URL}/users/login`,
+      postData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     if (!data) {
       return { data: null, status: null, success: false };
     }

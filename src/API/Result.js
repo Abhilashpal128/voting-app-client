@@ -2,7 +2,9 @@ import axios from "axios";
 
 export const GetResultData = async (adminId) => {
   try {
-    const { data } = await axios.post(`/result/declare/${adminId}`);
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_API_URL}/result/declare/${adminId}`
+    );
     if (!data) {
       return { data: null, status: null, success: false };
     }
